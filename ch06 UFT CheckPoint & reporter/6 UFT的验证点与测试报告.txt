@@ -1,4 +1,0 @@
-一：UFT自动化测试怎样做验证；
-二：怎样使用CheckProperty函数做验证，CheckProperty函数的语法结构；
-三：怎样生成正式的测试报告；
-四：生成测试报告的对象Reporter的使用方法。
