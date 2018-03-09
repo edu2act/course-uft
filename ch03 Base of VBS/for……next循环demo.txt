@@ -1,0 +1,16 @@
+'for……Next 循环实例
+
+'设置测试和属性对象，获取属性总数
+Set TestObject = Browser("百度一下，你就知道").Page("百度一下，你就知道").Image("bd_logo1_31bdc765")
+Set Properties = TestObject.GetTOProperties()
+PropertiesCount = Properties.Count
+Print "对象总计存在" & PropertiesCount
+'循环打印属性名和属性值
+For i = 0 To PropertiesCount -1 
+	PropName = Properties(i).Name
+	PropValue = Properties(i).Value
+	print PropName & "=" & PropValue
+Next
+'释放对象
+Set Properties = Nothing
+Set TestObject = Nothing

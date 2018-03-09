@@ -1,0 +1,27 @@
+VBS 语法基础
+1 变量定义和使用
+	1）先声明，后赋值（分两行）
+	2）没有数据类型的声明
+	3）通常使用显示声明
+	4）字母开头，不加.,长度小于255字符
+2 数组
+	1）定长数组   先声明，后赋值
+	2）括号使用小括号
+
+3 操作符   ^  Mod  = <>
+4 条件语句
+	IF  Then  Else End IF
+	IF  Then ElseIF Then Else End IF
+	Select Case 
+		Case 变量值
+		执行操作语句
+	select End
+5 循环
+	For Next 
+	Do    Loop while
+7 常用的函数：字符类、日期类、转换类、其他函数
+
+
+
+
+

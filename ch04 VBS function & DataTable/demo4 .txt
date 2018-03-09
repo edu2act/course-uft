@@ -1,0 +1,110 @@
+'知识回顾中，实例1：验证变量大小写的问题
+Dim a,sum
+a = 10
+sum = 8
+sum = sum + A
+msgbox sum
+
+'知识回顾，实例2：定长数组定义的另一种方式
+Dim StrArr,i
+StrArry = Array("abc","edf",123)
+For i = LBound(strArry) To UBound(strArry) 
+	print strArry(i)
+Next
+
+datatable.
+
+'实例1：sub过程实例
+Call GetName() '调用Sub过程
+Sub GetName()
+    MsgBox "我是Cassie" '输出字符串
+End Sub
+
+'实例2 Function 实例
+Call GetName("我是sirrah") '调用Function
+Function GetName(name)
+    MsgBox name '输出字符串
+End Function 
+
+'实例：验证百度搜索框
+SystemUtil.Run "C:\Users\Administrator\AppData\Local\Google\Chrome\Application\chrome.exe","http://www.baidu.com"
+
+Browser("百度一下，你就知道").Page("百度一下，你就知道").WebEdit("wd").Set ("ads;lkjf")
+Browser("百度一下，你就知道").Page("百度一下，你就知道").WebButton("百度一下").Click
+Browser("百度搜索结果页").Page("百度搜索结果页").Image("到百度首页").Click
+
+Browser("百度一下，你就知道").Page("百度一下，你就知道").WebEdit("wd").Set ("你好")
+Browser("百度一下，你就知道").Page("百度一下，你就知道").WebButton("百度一下").Click
+Browser("百度搜索结果页").Page("百度搜索结果页").Image("到百度首页").Click
+
+Browser("百度一下，你就知道").Page("百度一下，你就知道").WebEdit("wd").Set (123)
+Browser("百度一下，你就知道").Page("百度一下，你就知道").WebButton("百度一下").Click
+Browser("百度搜索结果页").Page("百度搜索结果页").Image("到百度首页").Click
+
+Browser("百度一下，你就知道").Page("百度一下，你就知道").WebEdit("wd").Set ("你好boy")
+Browser("百度一下，你就知道").Page("百度一下，你就知道").WebButton("百度一下").Click
+Browser("百度搜索结果页").Page("百度搜索结果页").Image("到百度首页").Click
+'……
+
+'实例：简化百度搜索验证实例
+SystemUtil.Run "C:\Users\Administrator\AppData\Local\Google\Chrome\Application\chrome.exe","http://www.baidu.com"
+
+with Browser("百度一下，你就知道").Page("百度一下，你就知道")
+	.WebEdit("wd").Set DataTable.Value("关键字输入","Global") 
+	.WebButton("百度一下").Click
+End With
+SystemUtil.CloseProcessByName("chrome.exe")
+'实例3：获取百度搜索框里的值将其填入表格中
+SystemUtil.Run "C:\Users\Administrator\AppData\Local\Google\Chrome\Application\chrome.exe","http://www.baidu.com"
+Dim Run_time
+Browser("百度一下，你就知道").Page("百度一下，你就知道").WebEdit("wd").Set ("UFT")
+Run_time = Browser("百度一下，你就知道").Page("百度一下，你就知道").WebEdit("wd").GetROProperty("value")
+
+DataTable.Value("Runtime_Data","Global") = Run_time
+Browser("百度一下，你就知道").Page("百度一下，你就知道").WebButton("百度一下").Click
+
+'实例4：获取结果搜索页面搜索框的值，与之前填入表格中的值比较，一致则passed;不一致则Failed
+Run_Time = DataTable.Value("Runtime_Data","Global")
+
+Dim CheckValue
+CheckValue = Browser("搜索结果页").Page("搜索结果页").WebEdit("wd").GetROProperty("value")
+
+If CheckValue = Run_Time Then
+	msgbox "Passed"
+Else 
+	msgbox "Failed"
+End If
+
+'实例5：动态在DataTable中添加新列并赋值
+DataTable.GlobalSheet.DeleteParameter "Runtime_Data"
+DataTable.GlobalSheet.AddParameter "Column1","Value1"
+DataTable.GlobalSheet.AddParameter "Column2","Value2"
+DataTable.LocalSheet.AddParameter "Column3","Value3"
+
+'实例6：动态在DataTable中增加新行
+DataTable.GetSheet("Action1").SetCurrentRow(2)
+DataTable.Value("Column4","Action1") = "abc"
+DataTable.Value(1,2) = "luck"
+
+'实例7：动态获取DataTable中指定的列第一个单元格的值
+GetValue1 = DataTable("Column1","Action1")
+msgbox GetValue1
+
+'实例8：不使用列名获取
+GetValue2 = DataTable(2,"Action1")
+msgbox GetValue2
+
+'实例9：循环读取第一行所有列数据
+Dim n
+n = DataTable.LocalSheet.GetParameterCount
+For i = 1 To n
+	print DataTable(i,"Action1")	
+Next
+
+'实例10：动态获取DataTable指定单元格的值
+getValueByRow = DataTable.GetSheet("Action1").GetParameter("Column1").ValueByRow(2)
+msgbox getValueByRow
+
+
+
+
